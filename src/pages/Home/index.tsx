@@ -2,14 +2,12 @@ import { useEffect, useState } from 'react'
 import api from '../../services/api'
 import key from '../../services/key'
 import { Link } from 'react-router-dom'
-import './home.css'
 import { MovieData } from '../../typescript/Interfaces'
-
-// URL API: https://api.themoviedb.org/3/movie/550?api_key=d571f914a339fd8837868a976c5889c7
+import './home.css'
 
 function Home(){
   const [movies, setMovies] = useState<MovieData[]>([]);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(true);  
 
   useEffect(() => {
     async function loadMovies() {

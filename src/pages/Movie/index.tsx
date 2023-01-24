@@ -3,12 +3,9 @@ import { useEffect, useState } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import api from '../../services/api'
 import key from '../../services/key'
-
-
-import './movie-info.css'
-
 import { toast } from 'react-toastify'
 import { MovieData } from '../../typescript/Interfaces'
+import './movie-info.css'
 
 function Movie(){
   const { id } = useParams();
@@ -31,7 +28,6 @@ function Movie(){
       .catch((e) => {
         console.log("Movie not found: ", e)
         navigate('/', { replace: true });
-        return;
       })
     }
 
@@ -45,10 +41,10 @@ function Movie(){
     
       let savedMovies = typeof myList == 'string' && JSON.parse(myList) || [];
 
-      const hasMovie = savedMovies.some((savedMovies: {id: number}) => savedMovies.id == movie?.id);
+      const hasMovie = savedMovies.some((savedMovies: { id: number }) => savedMovies.id == movie?.id);
+      
       if (hasMovie){
-        toast.warn('This movie is already on your list')
-        return;
+        return toast.warn('This movie is already on your list')
       }
 
       savedMovies.push(movie);
